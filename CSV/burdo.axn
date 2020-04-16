@@ -1,0 +1,15 @@
+// Script for parsing overall energy consumption
+
+// First two lines of file:
+// Start_Date_Time,End_Date_Time,Date_Only,Month,Time,Day_of_Week,Usage_KWH,Avg_High_Temperature_F,Peak_Demand_KW
+// 9/1/2018 0:00,9/1/2018 0:15,9/1/2018,9,0:00,7,18.6,56,74.4
+
+
+() => do
+  data: ioReadCsv(`io/uploads/Burdo_Complete.csv`)
+    .findAll(row => row.has("end_Date_Time") and row.has("usage_KWH")).map row => do
+    { ts: parseDateTime(row->end_Date_Time, "M/D/YYYY h:mm"),
+      v0: parseNumber(row->usage_KWH),
+    } end
+  data.hisWrite(read(totalmonitor))
+end
