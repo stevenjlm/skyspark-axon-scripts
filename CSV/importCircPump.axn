@@ -1,0 +1,8 @@
+() => do
+  data: ioReadCsv(`io/HHW_Circ_Pump_status.csv`)
+    .findAll(row => row.has("ts") and row.has("percent")).map row => do
+    { ts: parseDateTime(row->ts, "MM/DD/YY kk:mm:ss AA"),
+      v0: parseNumber(row->percent),
+    } end
+  data.hisWrite(read(circpump))
+end

@@ -1,0 +1,7 @@
+(point, dates) => do
+
+  "// finds when temp over 77"
+  hisRead(point, dates)
+    .hisFindPeriods(x => x > 77)
+
+end

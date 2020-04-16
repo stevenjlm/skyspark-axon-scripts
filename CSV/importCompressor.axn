@@ -1,0 +1,8 @@
+() => do
+  data: ioReadCsv(`io/airCompressorMotor.csv`)
+    .findAll(row => row.has("ts") and row.has("percent")).map row => do
+    { ts: parseDateTime(row->ts, "M/D/YYYY h:mm"),
+      v0: parseNumber(row->percent),
+    } end
+  data.hisWrite(read(compress))
+end

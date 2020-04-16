@@ -1,0 +1,8 @@
+() => do
+  data: ioReadCsv(`io/santc-temp.csv`)
+    .findAll(row => row.has("ts") and row.has("temp")).map row => do
+    { ts: parseDateTime(row->ts, "MM/DD/YY kk:mm:ss AA"),
+      v0: parseNumber(row->temp),
+    } end
+  data.hisWrite(read(santemp))
+end

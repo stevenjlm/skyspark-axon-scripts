@@ -1,0 +1,7 @@
+(point, dates) => do
+
+  "// finds when compressor pump at 50+%"
+  hisRead(point, dates)
+    .hisFindPeriods(x => x > 50)
+
+end
