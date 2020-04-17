@@ -11,6 +11,3 @@ First column should be where the time stamps/references are. Second should be th
 ## Setup parseDateTime
 
 Look up https://skyfoundry.com/doc/axon/CoreLib#parseDateTime for references on the date format codes.
-
-
-
